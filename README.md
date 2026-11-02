@@ -24,19 +24,23 @@ python --version
 irm https://claude.ai/install.ps1 | iex
 ```
 
-Cierra la terminal, abre una nueva y comprueba:
+El instalador **no siempre agrega Claude Code al PATH**. Este bloque lo agrega solo si falta (no duplica nada) y lo recarga en esta ventana:
 
 ```powershell
-claude --version
-```
-
-**Si dice «claude no se reconoce…»:** agrega la carpeta al PATH, recárgalo y vuelve a comprobar:
-
-```powershell
-[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path","User") + ";$env:USERPROFILE\.local\bin", "User")
+$dir = "$env:USERPROFILE\.local\bin"
+$userPath = [Environment]::GetEnvironmentVariable("Path","User")
+if ($userPath -notlike "*$dir*") { [Environment]::SetEnvironmentVariable("Path", "$userPath;$dir", "User") }
 $env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")
 claude --version
 ```
+
+Tiene que imprimir algo como `2.1.xxx (Claude Code)`. Si sigue diciendo «claude no se reconoce…», comprueba que se instaló (debe decir `True`) y, si dice `False`, repite el instalador:
+
+```powershell
+Test-Path "$env:USERPROFILE\.local\bin\claude.exe"
+```
+
+Si usas la terminal dentro de VS Code u otro editor, cierra y vuelve a abrir el editor.
 
 **Si dice «la ejecución de scripts está deshabilitada…»:** permite los scripts para tu usuario (responde S o Y) y repite este paso:
 
