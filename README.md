@@ -79,11 +79,11 @@ Cuando Claude pida permiso para algo (editar un archivo, correr un comando), **l
 Dentro de `claude`:
 
 ```text
-/plugin marketplace add <org>/metodo-claude
+/plugin marketplace add chuyAguilar/metodo-claude
 /plugin install metodo@metodo-claude
 ```
 
-(Sustituye `<org>` por la cuenta u organización de GitHub donde vive el repo. Si el repo es privado, necesitas acceso y tener Git autenticado con GitHub; la forma más fácil es `gh auth login`.)
+(El repo: <https://github.com/chuyAguilar/metodo-claude>. Si es privado, necesitas acceso y tener Git autenticado con GitHub; la forma más fácil es `gh auth login`.)
 
 Reinicia Claude Code (`/exit` y `claude`) y comprueba que la skill aparece: escribe `/metodo` y debe sugerirte `/metodo:iniciar-proyecto`.
 
