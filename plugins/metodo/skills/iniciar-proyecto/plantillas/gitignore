@@ -1,0 +1,14 @@
+# Datos privados: nunca entran en git (constitución, principio 1)
+{{CARPETA_PRIVADA}}/
+
+# Reportes de los agentes: viven en el disco, fuera de git
+Claude outputs/
+
+# Configuración local de Claude Code de cada persona
+.claude/settings.local.json
+
+# Python (quita lo que no aplique)
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/

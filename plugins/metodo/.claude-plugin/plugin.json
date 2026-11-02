@@ -1,0 +1,8 @@
+{
+  "name": "metodo",
+  "description": "Monta en un proyecto la forma de trabajo del equipo con Claude Code, por etapas y con autorización del autor en cada una.",
+  "version": "1.0.0",
+  "author": {
+    "name": "aguil"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "autoMemoryEnabled": false,
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": "{{TIMEOUT_MS}}",
+    "BASH_MAX_TIMEOUT_MS": "{{TIMEOUT_MS}}"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Glob|Grep|Edit|MultiEdit|Write|NotebookEdit|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "\"{{PYTHON}}\" \"$CLAUDE_PROJECT_DIR/.claude/hooks/sin_privados.py\" || { printf '%s' '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"El hook no pudo correr (sin_privados.py o su interprete): se niega la herramienta.\"}}'; echo 'sin_privados.py no pudo correr: se niega la herramienta' >&2; exit 0; }"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash({{SUITE}} *)",
+      "Bash(timeout * {{SUITE}} *)",
+      "Bash(git --no-optional-locks log *)",
+      "Bash(git --no-optional-locks status *)",
+      "Bash(git --no-optional-locks diff *)",
+      "Bash(git --no-optional-locks show *)",
+      "Bash(wc *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(mkdir *)",
+      "Skill(planear)",
+      "Skill(fase)",
+      "Skill(cerrar-fase)",
+      "Agent(planificacion)",
+      "Agent(desarrollo)",
+      "Agent(pruebas)"
+    ],
+    "deny": [
+      "Bash(git commit *)",
+      "Bash(git * commit *)",
+      "Bash(git push *)",
+      "Bash(git * push *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git * commit *)",
+      "PowerShell(git push *)",
+      "PowerShell(git * push *)",
+      "Read({{CARPETA_PRIVADA}}/**)",
+      "Edit({{CARPETA_PRIVADA}}/**)"
+    ]
+  }
+}

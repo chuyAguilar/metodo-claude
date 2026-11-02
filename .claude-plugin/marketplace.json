@@ -1,0 +1,17 @@
+{
+  "name": "metodo-claude",
+  "owner": {
+    "name": "aguil"
+  },
+  "metadata": {
+    "description": "La forma de trabajo del equipo con Claude Code: plan autorizado, agentes por papel y el autor hace los commits."
+  },
+  "plugins": [
+    {
+      "name": "metodo",
+      "source": "./plugins/metodo",
+      "description": "Skill iniciar-proyecto: monta constitución, CLAUDE.md, memory.md, specs, BACKLOG, agentes por papel, skills planear/fase/cerrar-fase y hooks.",
+      "version": "1.0.0"
+    }
+  ]
+}
